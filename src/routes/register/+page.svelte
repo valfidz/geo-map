@@ -1,6 +1,6 @@
 <script lang="ts">
     import { enhance } from "$app/forms";
-    import type { ActionData } from "./$types";
+    import type { ActionData } from "../$types";
     import type { SubmitFunction } from "@sveltejs/kit";
 
     interface Props {
@@ -25,8 +25,8 @@
 </svelte:head>
 
 <div class="w-full h-screen flex flex-col items-center justify-center mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Welcome to Geo Map</h1>
-    <form method="POST" action="?/login" use:enhance={handleSubmit}>
+    <h1 class="text-2xl font-bold mb-4">Register Account</h1>
+    <form method="POST" use:enhance={handleSubmit}>
         {#if form?.message !== undefined}
             <div class="success {form?.success ? '' : 'fail'}">
                 {form?.message}
@@ -59,11 +59,10 @@
                 required
             />
         </div>
-
         <button
             class="px-3 py-1.5 text-sm text-white duration-150 bg-green-600 rounded-full hover:bg-green-500 active:bg-green-700"
         >
-            Sign In
+            Register
         </button>
     </form>
 </div>
