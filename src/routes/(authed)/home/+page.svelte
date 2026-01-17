@@ -3,58 +3,41 @@
     import { browser } from "$app/environment";
 
     let L: any;
-    let marker;
-    let circle;
-    let polygon;
-    let popup;
+
+    let { data } = $props();
+
+    const poly_style = {
+        color: "#FF7700",
+        weight: 3,
+        opacity: 0.65
+    }
+
+    function onEachFeature(feature: any, layer: any) {
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup(feature.properties.name);
+        }
+    }
+
 
     onMount(async () => {
+        const dataMap = data.dataMap.features;
+        console.log("data map", dataMap)
         if (browser) {
             L = await import('leaflet')
 
             // initiate map
-            let map = L.map('map').setView([51.505, -0.09], 13);
-
+            let map = L.map('map').setView([-7.33535, 108.204346], 4);
+            
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
-
-            // add marker
-            marker = L.marker([51.5, -0.09]).addTo(map);
-            marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
-            // add circle
-            circle = L.circle([51.508, -0.11], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: 500
+                
+            // initiate geojson map
+            L.geoJSON(dataMap, {
+                style: poly_style,
+                onEachFeature: onEachFeature
             }).addTo(map);
-            circle.bindPopup("I am a circle.");
-
-            //add polygon
-            polygon = L.polygon([
-                [51.509, -0.08],
-                [51.503, -0.06],
-                [51.51, -0.047]
-            ]).addTo(map);
-            polygon.bindPopup("I am a polygon.");
-
-            // add standalonde popup
-            popup = L.popup()
-                .setLatLng([51.513, -0.09])
-                .setContent("I am a standalone popup.")
-                .openOn(map);
-
-            // add popup onclick
-            function onMapClick(e: any) {
-                popup = L.popup()
-                    .setLatLng(e.latlng)
-                    .setContent("You clicked the map at " + e.latlng.toString())
-                    .openOn(map);
-            }
-            map.on('click', onMapClick);
         }
     })
 
