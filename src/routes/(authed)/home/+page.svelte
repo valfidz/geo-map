@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { browser } from "$app/environment";
     import { jsPDF } from "jspdf"
+    import { autoTable } from 'jspdf-autotable'
 
     let L: any;
 
@@ -10,10 +11,13 @@
     let countries = $state([]);
     let clickedCountry: any = $state();
     let selected_country: any = $state([])
-
-    const doc = new jsPDF();
     
     function handleDownload() {
+        const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'pt',
+            format: 'letter'
+        });
         const dataUser = data.user?.email;
         const timestamp = new Date();
         const total_country = data.dataMap.features.length
@@ -27,21 +31,21 @@
                 select_country.push(country.name)
             }
         })
-        
-        // const tableData = {
-        //     user: dataUser,
-        //     timestamp: timestamp,
-        //     total_countries: total_country,
-        //     selected_countries: select_country,
-        //     all_country_name: all_country_name
-        // }
-        // doc.table(10, 10, tableData, null, null)
 
-        doc.text(`User: ${dataUser}`, 10, 10);
-        doc.text(`Timestamp: ${timestamp}`, 10, 20);
-        doc.text(`Total countries: ${total_country}`, 10, 30);
-        doc.text(`Selected countries: ${select_country}`, 10, 40);
-        doc.text(`All Country Name: ${all_country_name}`, 10, 50);
+        const tableColumn = ["Field", "Value"];
+        const tableRows = [
+            ["User", dataUser],
+            ["Timestamp", timestamp],
+            ["Total Countries", total_country],
+            ["Selected Countries", select_country.join(', ')],
+            ["All Countries", all_country_name.join(', ')]
+        ]
+
+        autoTable(doc, {
+            head: [tableColumn],
+            body: tableRows
+        })
+        
         doc.save("Country-Map.pdf");
     }
 
@@ -183,9 +187,9 @@
         </div>
     </div>
     <div id="map" class="col-span-4 row-span-5"></div>
-    {#each selected_country as sCountry}
+    <!-- {#each selected_country as sCountry}
         <p>{JSON.stringify(sCountry)}</p>
-    {/each}
+    {/each} -->
 </div>
 
 <style>
