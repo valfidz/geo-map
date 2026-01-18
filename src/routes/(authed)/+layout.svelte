@@ -2,8 +2,10 @@
     let { data, children } = $props();
 </script>
 
-<div>
-    <div class="py-2 px-2 bg-slate-200">
+{@render children()}
+
+<!-- <div>
+    <div class="py-2 px-2 bg-slate-100">
         <ul class="flex flex-row justify-end">
             <li class="mr-4">{ data.user?.email }</li>
             <li>
@@ -19,5 +21,5 @@
     <div>
         {@render children()}
     </div>
-</div>
+</div> -->
 
