@@ -126,9 +126,6 @@
             }).addTo(map);
         }
     })
-
-    
-
 </script>
 
 <svelte:head>
@@ -142,11 +139,11 @@
 </svelte:head>
 
 <div class="grid grid-cols-5 grid-rows-5">
-    <div class="row-span-5 bg-slate-100 h-full pl-2 pt-2 flex flex-col justify-between items-start">
-        <div>
-            <button onclick={handleDownload} class="btn mb-2 px-2 bg-yellow-300 hover:bg-yellow-500 rounded-md">Download as PDF</button>
+    <div class="row-span-5 bg-slate-100 flex flex-col justify-between items-start">
+        <div class="w-full px-2 pt-2 bg-slate-200">
+            <button onclick={handleDownload} class="btn mb-2 px-2 py-2 inline-block rounded-sm border border-yellow-600 bg-yellow-600 text-sm font-medium text-white hover:bg-transparent hover:text-yellow-600">Download as PDF</button>
         </div>
-        <div class="max-h-[85vh] flex flex-col overflow-y-auto no-scrollbar">
+        <div class="max-h-[83vh] px-2 flex flex-col overflow-y-auto no-scrollbar">
             {#each selected_country as sCountry}
                 <label class="{sCountry.isClicked ? 'bg-slate-300' : ''}">
                     <input
@@ -160,12 +157,12 @@
             {/each}
         </div>
 
-        <div class="w-full pl-2">
+        <div class="w-full pl-2 bg-slate-200">
             <ul class="pb-2">
                 <li class="pb-2">{ data.user?.email }</li>
                 <li>
                     <form method="POST" action="/home?/logout">
-                        <button class="px-3 py-1 text-sm text-white duration-150 bg-blue-600 rounded-full hover:bg-blue-500 active:bg-blue-700">
+                        <button class="px-3 py-1 text-sm text-white duration-150 bg-blue-600 rounded-sm hover:bg-blue-500 active:bg-blue-700">
                             Logout 
                         </button>
                     </form>
