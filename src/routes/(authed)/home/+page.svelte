@@ -7,7 +7,6 @@
     let L: any;
 
     let { data } = $props();
-    let clicked = $state(false);
     let selected_country: any = $state([]);
     
     function handleDownload() {
@@ -66,7 +65,6 @@
     function highlightClicked(e: any) {
         let layer = e.target;
         let current_country = layer.feature.properties.name
-        clicked = !clicked
 
         selected_country.forEach((cCountry: any) => {
             if (cCountry.name === current_country) {
@@ -89,6 +87,7 @@
                     })
             
                     layer.bringToBack()
+                    layer.closePopup()
                     cCountry.isClicked = false
                 }
             } 
