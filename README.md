@@ -69,7 +69,7 @@ GEO_API=https://datahub.io/core/geo-countries/r/countries.geojson
 - [![Svelte](https://img.shields.io/badge/Svelte%20^5.45.6-43853D?logo=svelte&logoColor=white 'Svelte')](https://svelte.dev/docs/svelte/overview)
 - [![Sveltekit](https://img.shields.io/badge/Sveltekit%20^2.49.1-43853D?logo=svelte&logoColor=white 'Sveltekit')](https://svelte.dev/docs/kit/introduction)
 - [![Tailwindcss](https://img.shields.io/badge/Tailwindcss%20^4.1.18-43853D?logo=tailwindcss&logoColor=white 'Tailwindcss')](https://tailwindcss.com/)
-- [![Leaflet](https://img.shields.io/badge/Leaflet%20^1.9.4-43853D?logo=tailwindcss&logoColor=white 'Leaflet')](https://leafletjs.com/)
+- [![Leaflet](https://img.shields.io/badge/Leaflet%20^1.9.4-43853D?logo=leaflet&logoColor=white 'Leaflet')](https://leafletjs.com/)
 - [![jsPDF](https://img.shields.io/badge/jsPDF%20^1.9.4-43853D?logo=jspdf&logoColor=white 'jsPDF')](https://github.com/parallax/jsPDF)
 - [![jsPDF autotable](https://img.shields.io/badge/jsPDF%20autotable%20^5.0.7-43853D?logo=jspdf&logoColor=white 'jsPDF autotable')](https://github.com/simonbengtsson/jsPDF-AutoTable)
 
