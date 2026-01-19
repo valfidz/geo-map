@@ -8,6 +8,7 @@
     - [Supabase setup](#supabase-setup)
     - [Libraries used in this project](#libraries-used-in-this-project)
     - [Building](#building)
+    - [Demo](#demo)
 
 ## Description
 
@@ -15,7 +16,6 @@ A simple map made with [Sveltekit](https://svelte.dev/docs/kit/introduction) and
 
 ## Requirements
 
-- [![Node.js](https://img.shields.io/badge/Node.js%20^22.14.0-43853D?logo=node.js&logoColor=white 'Node.js')](https://nodejs.org)
 - [![Bun](https://img.shields.io/badge/Bun%20^1.3.6-43853D?logo=bun&logoColor=white 'Bun')](https://bun.com/)
 - [![Supabase](https://img.shields.io/badge/Supabase%20^2.90.1-43853D?logo=supabase&logoColor=white 'Supabase')](https://supabase.com/docs)
 
@@ -85,3 +85,8 @@ bun run build
 You can preview the production build with `bun run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Demo
+
+[![Demo Video](https://raw.githubusercontent.com/valfidz/embed_video/main/thumbnail.png)]
+(https://raw.githubusercontent.com/valfidz/embed_video/main/Demo.mp4)
