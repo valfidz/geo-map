@@ -8,9 +8,7 @@
 
     let { data } = $props();
     let clicked = $state(false);
-    let countries = $state([]);
-    let clickedCountry: any = $state();
-    let selected_country: any = $state([])
+    let selected_country: any = $state([]);
     
     function handleDownload() {
         const doc = new jsPDF({
@@ -58,7 +56,7 @@
 
     function makeCountryState(countryObj: any) {
         countryObj.forEach((country: any) => {
-            selected_country.push({ selected: false, name: country.properties.name })
+            selected_country.push({ selected: false, isClicked: false, name: country.properties.name })
         })
 
         selected_country.sort((a: any, b: any) => a.name.localeCompare(b.name))
@@ -69,42 +67,32 @@
         let layer = e.target;
         let current_country = layer.feature.properties.name
         clicked = !clicked
-        // clickedCountry = layer.feature.properties.name
 
-        // sebelumnya buat dulu state clicked_country dengan value seperti [{isClicked: false, name: 'country a'}, {isClicked: false, name: 'country b'}]
-        // iterasi state clicked_country
-        // jika clicked_country.name === current_country, cek isClicked
-        // jika isClicked == false, ubah style menjadi style highlight dan ubah value isClicked menjadi true
-        // jika isClicked == true, ubah style menjadi style awal dan ubah value isClicked menjadi false
-
-        // layer.setStyle({
-        //     weight: 6,
-        //     color: "#FF7700",
-        //     opacity: 0.8,
-        //     fillOpacity: 0.4
-        // })
-
-        if (clicked) {
-            layer.setStyle({
-                weight: 6,
-                color: "#FF7700",
-                opacity: 0.8,
-                fillOpacity: 0.4
-            })
-    
-            layer.bringToFront()
-            clickedCountry = layer.feature.properties.name
-        } else {
-            layer.setStyle({
-                weight: 3,
-                color: "#FF7700",
-                opacity: 0.65,
-                fillOpacity: 0.2
-            })
-    
-            layer.bringToBack()
-            clickedCountry = ''
-        }
+        selected_country.forEach((cCountry: any) => {
+            if (cCountry.name === current_country) {
+                if (!cCountry.isClicked) {
+                    layer.setStyle({
+                        weight: 6,
+                        color: "#FF7700",
+                        opacity: 0.8,
+                        fillOpacity: 0.4
+                    })
+            
+                    layer.bringToFront()
+                    cCountry.isClicked = true
+                } else {
+                    layer.setStyle({
+                        weight: 3,
+                        color: "#FF7700",
+                        opacity: 0.65,
+                        fillOpacity: 0.2
+                    })
+            
+                    layer.bringToBack()
+                    cCountry.isClicked = false
+                }
+            } 
+        })
     }
 
     function onEachFeature(feature: any, layer: any) {
@@ -161,7 +149,7 @@
         </div>
         <div class="max-h-[85vh] flex flex-col overflow-y-auto no-scrollbar">
             {#each selected_country as sCountry}
-                <label class="{clickedCountry === sCountry.name ? 'bg-slate-300' : ''}">
+                <label class="{sCountry.isClicked ? 'bg-slate-300' : ''}">
                     <input
                         type="checkbox"
                         bind:checked={sCountry.selected}
