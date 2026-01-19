@@ -88,5 +88,4 @@ You can preview the production build with `bun run preview`.
 
 ## Demo
 
-[![Demo Video](https://raw.githubusercontent.com/valfidz/embed_video/main/thumbnail.png)]
-(https://raw.githubusercontent.com/valfidz/embed_video/main/Demo.mp4)
+[![Watch the video](https://raw.githubusercontent.com/valfidz/embed_video/main/thumbnail.png)](https://raw.githubusercontent.com/valfidz/embed_video/main/Demo.mp4)
